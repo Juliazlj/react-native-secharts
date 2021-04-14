@@ -1,4 +1,4 @@
-const toString = (obj) => {
+const toString = (obj = '{}') => {
   let result = JSON.stringify(obj, function (key, val) {
     // 对function进行特殊处理
     if (typeof val === 'function') {

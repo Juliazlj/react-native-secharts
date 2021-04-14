@@ -64,8 +64,13 @@ class Echarts extends Component {
   }
 
   _handleMessage = (event) => {
-    event.persist()
+    // event.persist()
     if (!event) return null;
+    if(typeof event.persist === 'function'){
+      // 修复event.persist is not a function错误
+      // https://github.com/shifeng1993/react-native-secharts/pull/70
+      event.persist()
+    }
     const data = JSON.parse(event.nativeEvent.data)
     switch (data.types) {
       case 'ON_PRESS':

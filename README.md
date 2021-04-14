@@ -1,6 +1,6 @@
-# react-native-secharts
-[![NPM Version](https://img.shields.io/npm/v/react-native-secharts.svg?style=flat)](https://www.npmjs.com/package/react-native-secharts)
-  [![License](http://img.shields.io/npm/l/react-native-secharts.svg?style=flat)](https://github.com/shifeng1993/react-native-echarts/blob/master/LICENSE)
+# react-native-zecharts
+[![NPM Version](https://img.shields.io/npm/v/react-native-zecharts.svg?style=flat)](https://www.npmjs.com/package/react-native-zecharts)
+  [![License](http://img.shields.io/npm/l/react-native-zecharts.svg?style=flat)](https://github.com/shifeng1993/react-native-echarts/blob/master/LICENSE)
   
 一个webview封装的图表组件。基于百度echarts4，相比native-echarts有echarts自带对象支持，例如渐变色等，用法与官网相同用法。
 
@@ -13,11 +13,11 @@ echarts version 4.2.1
 ### 1. 安装依赖
 - react-native >= 0.60.2
   ```bash
-  yarn add react-native-secharts react-native-webview@androidx
+  yarn add react-native-zecharts react-native-webview@androidx
   ```
     或者
   ```bash
-  npm install react-native-secharts react-native-webview@androidx --save
+  npm install react-native-zecharts react-native-webview@androidx --save
   ```
   安装完成后在`android/gradle.properties`文件添加2行配置，确保在项目中启用AndroidX
 
@@ -29,31 +29,31 @@ echarts version 4.2.1
   ```
 - react-native >= 0.57 && react-native < 0.60.2
   ```bash
-  yarn add react-native-secharts@1.6.1 react-native-webview@2.14.3
+  yarn add react-native-zecharts@1.6.1 react-native-webview@2.14.3
   react-native link react-native-webview
   ```
     或者
   ```bash
-  npm install react-native-secharts@1.6.1 react-native-webview@2.14.3 --save
+  npm install react-native-zecharts@1.6.1 react-native-webview@2.14.3 --save
   react-native link react-native-webview
   ```
 
 - react-native = 0.56
   ```bash
-  yarn add react-native-secharts@1.5.3
+  yarn add react-native-zecharts@1.5.3
   ```
     或者
   ```bash
-  npm install react-native-secharts@1.5.3 --save
+  npm install react-native-zecharts@1.5.3 --save
   ```
 
 - react-native < 0.56
   ```bash
-  yarn add react-native-secharts@1.4.5
+  yarn add react-native-zecharts@1.4.5
   ```
     或者
   ```bash
-  npm install react-native-secharts@1.4.5 --save
+  npm install react-native-zecharts@1.4.5 --save
   ```
 
 ### 2. 修复android release bug
@@ -62,16 +62,16 @@ echarts version 4.2.1
 - 创建完成后请在你的项目根目录（`$yourProject/） 文件夹下使用命令
 - 以下是 mac && linux 
 ```bash
-cp node_modules/react-native-secharts/main/dist/index.html android/app/src/main/assets/echarts/ && cp node_modules/react-native-secharts/main/dist/Bmap.html android/app/src/main/assets/echarts/
+cp node_modules/react-native-zecharts/main/dist/index.html android/app/src/main/assets/echarts/ && cp node_modules/react-native-zecharts/main/dist/Bmap.html android/app/src/main/assets/echarts/
 ```
 - 以下是 windows
 ```bash
-copy node_modules/react-native-secharts/main/dist/index.html android/app/src/main/assets/echarts/ && copy node_modules/react-native-secharts/main/dist/Bmap.html android/app/src/main/assets/echarts/
+copy node_modules/react-native-zecharts/main/dist/index.html android/app/src/main/assets/echarts/ && copy node_modules/react-native-zecharts/main/dist/Bmap.html android/app/src/main/assets/echarts/
 ```
 
 ### 3. 引用组件
 ```javascript
-import {Echarts, echarts} from 'react-native-secharts';
+import {Echarts, echarts} from 'react-native-zecharts';
 ```
 - 大写开头的`Echarts`是组件
 - 小写开头的`echarts`是echarts对象
@@ -82,7 +82,7 @@ import {Echarts, echarts} from 'react-native-secharts';
 ```
 请看example文件夹中示例代码  
 
-链接：https://github.com/shifeng1993/react-native-secharts/tree/master/example
+链接：https://github.com/shifeng1993/react-native-zecharts/tree/master/example
 
 运行示例
 ```bash
@@ -144,7 +144,7 @@ option具体配置请参考echarts官网api http://echarts.baidu.com/api.html#ec
 ### 注意
 - 实例方法setOption不会保存修改后的option，这意味着在react 执行setState操作后重新render，当前state的状态会重新覆盖webview内setOption的状态，所以不推荐使用。
 
-- 目前已经修复组件因为onload发生的闪烁，这意味着可以不用组件setOption的实例方法，直接通过修改当容器组件的绑定的state值，setState操作，然后secharts组件会监听 state中option的改变，来进行option修改。当然组件实例方法setOption还是可以使用的，只是有bug，不推荐而已。
+- 目前已经修复组件因为onload发生的闪烁，这意味着可以不用组件setOption的实例方法，直接通过修改当容器组件的绑定的state值，setState操作，然后zecharts组件会监听 state中option的改变，来进行option修改。当然组件实例方法setOption还是可以使用的，只是有bug，不推荐而已。
 ```jsx
   constructor(props) {
     super(props);
