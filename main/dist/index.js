@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Platform} from 'react-native';
+import {View, StyleSheet, Platform, ToastAndroid} from 'react-native';
 import {WebView as RNWebView} from 'react-native-webview';
 import renderChart from './utils/renderChart';
 import {toString} from './utils/utils';
@@ -37,29 +37,29 @@ class Echarts extends Component {
 
   render() {
     return (
-      <View style={{flexDirection: 'row', width: this.props.width}}>
-        <View style={{flex: 1, height: this.props.height || 400}}>
-          <RNWebView
-            ref={this.chartRef}
-            originWhitelist={['*']}
-            useWebKit={true}  // ios使用最新webkit内核渲染
-            allowUniversalAccessFromFileURLs={true}
-            geolocationEnabled={true}
-            mixedContentMode={'always'}
-            renderLoading={this.props.renderLoading || (() => <View style={{backgroundColor: this.props.backgroundColor}} />)} // 设置空View，修复ioswebview闪白
-            style={{backgroundColor: this.props.backgroundColor}} // 设置背景色透明，修复android闪白
-            scrollEnabled={false}
-            onMessage={this._handleMessage}
-            javaScriptEnabled={true}
-            injectedJavaScript={renderChart(this.props)}
-            startInLoadingState={false}
-            source={{
-              baseUrl: '',
-              html: index()
-            }}
-          />
+        <View style={{flexDirection: 'row', width: this.props.width}}>
+          <View style={{flex: 1, height: this.props.height || 400}}>
+            <RNWebView
+                ref={this.chartRef}
+                originWhitelist={['*']}
+                useWebKit={true}  // ios使用最新webkit内核渲染
+                allowUniversalAccessFromFileURLs={true}
+                geolocationEnabled={true}
+                mixedContentMode={'always'}
+                renderLoading={this.props.renderLoading || (() => <View style={{backgroundColor: this.props.backgroundColor}} />)} // 设置空View，修复ioswebview闪白
+                style={{backgroundColor: this.props.backgroundColor}} // 设置背景色透明，修复android闪白
+                scrollEnabled={false}
+                onMessage={this._handleMessage}
+                javaScriptEnabled={true}
+                injectedJavaScript={renderChart(this.props)}
+                startInLoadingState={false}
+                source={{
+                  baseUrl: '',
+                  html: index()
+                }}
+            />
+          </View>
         </View>
-      </View>
     );
   }
 
@@ -71,7 +71,7 @@ class Echarts extends Component {
       // https://github.com/shifeng1993/react-native-secharts/pull/70
       event.persist()
     }
-    const data = JSON.parse(event.nativeEvent.data)
+    const data = JSON.parse(event.nativeEvent.data === "undefined" ? '{}':event.nativeEvent.data)
     switch (data.types) {
       case 'ON_PRESS':
         this.props.onPress(JSON.parse(data.payload))
@@ -83,6 +83,7 @@ class Echarts extends Component {
         })
         break;
       default:
+        ToastAndroid.showWithGravity(JSON.stringify(data), 2000,  ToastAndroid.TOP);
         break;
     }
   };

@@ -5,7 +5,19 @@ const renderChart = (props) => {
   const width = props.width ? `${props.width}px` : 'auto';
   const backgroundColor = props.backgroundColor;
   const chartUseData = props.chartUseData;
-  return `
+
+  const debugging = `
+     // Debug
+     console = new Object();
+     console.log = function(log) {
+       window.ReactNativeWebView.postMessage(log);
+     };
+     console.debug = console.log;
+     console.info = console.log;
+     console.warn = console.log;
+     console.error = console.log;
+     `;
+  return debugging + `
       document.getElementById('main').style.height = "${height}";
       document.getElementById('main').style.width = "${width}";
       document.getElementById('main').style.backgroundColor = "${backgroundColor}";
