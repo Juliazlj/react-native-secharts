@@ -1,6 +1,6 @@
 {
   "name": "react-native-zecharts",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "reactnative的echarts组件",
   "main": "main/dist/index.js",
   "scripts": {
